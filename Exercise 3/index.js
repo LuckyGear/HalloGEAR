@@ -1,3 +1,31 @@
+//ExpressMethod
+const express = require('express');
+const app     = express();
+const port    = 3000;
+const dataMember  = require("./members.js");
+const dataUsers   = require("./users.js");
+const moment      = require("moment");
+
+app.get("/", (req, res)=> res.send("This is the Home Page"));
+
+app.get("/about", (req, res)=> 
+            res.json({
+                    status: "success",
+                    message: "response success",
+                    description: "Exercise #03",
+                    date:moment().format(),
+                    data: dataMember,
+            }
+            ));
+
+app.get("/users", (req, res)=>
+            res.json(dataUsers)
+)
+
+app.listen(port, ()=>
+    console.log(`Server running at http://localhost:${port}`)
+);
+/*
 const http        = require("http");
 const dataMember  = require("./members.js");
 const dataUsers   = require("./users.js");
@@ -35,3 +63,5 @@ const port = 3000;
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
+
+*/
